@@ -10,7 +10,7 @@ Use this ansible playbook to set up a Kubernetes cluster from scratch using Ansi
 4. ssh into all EC2 instances and run (sudo yum update -y)
 
 ## Example SSH
-- ssh -i ~/.ssh/key_pair.pem centos@<ip-instance>
+- ssh -i ~/.ssh/key_pair.pem centos@instance-ip
 
 ## Install Playbook
 
@@ -34,7 +34,7 @@ Kubernetes will assign a random port that is greater than 30000 automatically
 
 To test that everything is working:
 
-curl http://<worker-node-ip-1>:<node-port>
-curl http://<worker-node-ip-2>:<node-port>
+curl http://worker-node-ip-1:node-port
+curl http://worker-node-ip-2:node-port
 
 You will see Nginx's familiar welcome page.
