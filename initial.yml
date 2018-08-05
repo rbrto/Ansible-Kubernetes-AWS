@@ -1,0 +1,21 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: create the 'centos' user
+      user: name=centos append=yes state=present createhome=yes shell=/bin/bash
+
+    - name: allow 'centos' to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'centos ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: set up authorized keys for the centos user
+      authorized_key: user=centos key="{{item}}"
+      with_file:
+        - ~/.ssh/id_rsa.pub
+
+    - name: 'Restart SSH daemon'
+      service:
+        name: sshd
+        state: restarted

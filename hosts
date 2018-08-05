@@ -1,0 +1,11 @@
+[masters]
+master ansible_host=<IP-MASTER>
+
+[workers]
+worker1 ansible_host=<IP-WORKER-1>
+worker2 ansible_host=<IP-WORKER-2>
+
+[all:vars]
+ansible_ssh_user=centos
+ansible_ssh_private_key_file=~/.ssh/ansible-k8s.pem
+ansible_python_interpreter=/usr/bin/python
